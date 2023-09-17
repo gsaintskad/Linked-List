@@ -132,7 +132,8 @@ void List::insert(int data, int index)
 		Node* newNode = new Node(data, previous->pNext);
 
 		previous->pNext = newNode;
-
+		newNode->pPrev = previous;
+		newNode->pNext->pPrev = newNode;
 		Size++;
 	}
 
@@ -159,7 +160,7 @@ void List::removeAt(int index)
 
 
 		Node* toDelete = previous->pNext;
-
+		toDelete->pNext->pNext = previous;
 		previous->pNext = toDelete->pNext;
 
 		delete toDelete;
